@@ -13,6 +13,10 @@
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/bootstrap-select.css">
   <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
+
+  <link rel="stylesheet" type="text/css"
+    href="https://unpkg.com/js-year-calendar@latest/dist/js-year-calendar.min.css" />
+
   <link rel="stylesheet" type="text/css" href="css/style.css">
 
 </head>
@@ -174,10 +178,10 @@
 
             <div class="month-select">
               <select id="" name="" class="selectpicker show-tick">
-                <option value="1" selected="selected">3 Month</option>
+                <option value="1">3 Month</option>
                 <option value="2">6 Month</option>
                 <option value="3">9 Month</option>
-                <option value="4">12 Month</option>
+                <option value="4" selected="selected">12 Month</option>
               </select>
             </div>
 
@@ -189,7 +193,8 @@
           <!-- calendars START -->
           <div class="calendars">
             <!-- bootstrap year calendar start -->
-            <link href="css/bootstrap-year-calendar.css" rel="stylesheet" type="text/css">
+            <!-- <link href="css/bootstrap-year-calendar.css" rel="stylesheet" type="text/css"> -->
+
             <div class="calendar">
             </div>
             <!-- bootstrap year calendar stop -->
@@ -472,7 +477,9 @@
             <a class="add" data-dismiss="modal">
               <span>Save</span>
               <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.24779 21.3821L1.61679 14.7501C0.514249 13.5862 0.538671 11.7561 1.67188 10.6221C2.80509 9.48808 4.63514 9.46234 5.79979 10.5641L10.0178 14.7821L17.9178 4.24905C18.8984 2.94041 20.7542 2.67447 22.0628 3.65505C23.3714 4.63563 23.6374 6.49141 22.6568 7.80005L12.7098 21.0651C12.1947 21.7515 11.4072 22.1808 10.5511 22.2416C9.69506 22.3024 8.85472 21.9888 8.24779 21.3821Z" stroke-width="1.5" stroke-linejoin="round"/>
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M8.24779 21.3821L1.61679 14.7501C0.514249 13.5862 0.538671 11.7561 1.67188 10.6221C2.80509 9.48808 4.63514 9.46234 5.79979 10.5641L10.0178 14.7821L17.9178 4.24905C18.8984 2.94041 20.7542 2.67447 22.0628 3.65505C23.3714 4.63563 23.6374 6.49141 22.6568 7.80005L12.7098 21.0651C12.1947 21.7515 11.4072 22.1808 10.5511 22.2416C9.69506 22.3024 8.85472 21.9888 8.24779 21.3821Z"
+                  stroke-width="1.5" stroke-linejoin="round" />
               </svg>
             </a>
           </div>
@@ -493,7 +500,13 @@
   <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
 
   <!-- bootstrap year calendar start -->
-  <script src="js/bootstrap-year-calendar.js"></script>
+  <script src="js/js-year-calendar.js"></script>
+
+  <script>
+    new Calendar('.calendar')
+  </script>
+
+  <!-- <script src="js/bootstrap-year-calendar.js"></script>
   <script>
     //$('.calendar').calendar({});
 
@@ -580,34 +593,34 @@
             var content = '';
 
             for (var i in e.events) {
-              content += 
-              '<div class="event-tooltip-content">'
+              content +=
+                '<div class="event-tooltip-content">'
 
                 + '<div class="tooltip-block">'
-                  + '<div class="tooltip-bgcolor" style="background-color: #3FA9F5;"></div>'
-                  + '<div class="tooltip-content">'  
-                    + '<div class="tooltip-name">' + e.events[i].name + '</div>'
-                    + '<div class="tooltip-date">' + e.events[i].startDate + '-' + e.events[i].endDate +'</div>'
-                  + '</div>'
+                + '<div class="tooltip-bgcolor" style="background-color: #3FA9F5;"></div>'
+                + '<div class="tooltip-content">'
+                + '<div class="tooltip-name">' + e.events[i].name + '</div>'
+                + '<div class="tooltip-date">' + e.events[i].startDate + '-' + e.events[i].endDate + '</div>'
+                + '</div>'
                 + '</div>'
 
                 + '<div class="tooltip-block">'
-                  + '<div class="tooltip-bgcolor" style="background-color: #F2C94C"></div>'
-                  + '<div class="tooltip-content">'  
-                    + '<div class="tooltip-name">' + e.events[i].name + '</div>'
-                    + '<div class="tooltip-date">' + e.events[i].startDate + '-' + e.events[i].endDate +'</div>'
-                  + '</div>'
+                + '<div class="tooltip-bgcolor" style="background-color: #F2C94C"></div>'
+                + '<div class="tooltip-content">'
+                + '<div class="tooltip-name">' + e.events[i].name + '</div>'
+                + '<div class="tooltip-date">' + e.events[i].startDate + '-' + e.events[i].endDate + '</div>'
+                + '</div>'
                 + '</div>'
 
                 + '<div class="tooltip-block">'
-                  + '<div class="tooltip-bgcolor" style="background-color: #BB6BD9"></div>'
-                  + '<div class="tooltip-content">'  
-                    + '<div class="tooltip-name">' + e.events[i].name + '</div>'
-                    + '<div class="tooltip-date">' + e.events[i].startDate + '-' + e.events[i].endDate +'</div>'
-                  + '</div>'
+                + '<div class="tooltip-bgcolor" style="background-color: #BB6BD9"></div>'
+                + '<div class="tooltip-content">'
+                + '<div class="tooltip-name">' + e.events[i].name + '</div>'
+                + '<div class="tooltip-date">' + e.events[i].startDate + '-' + e.events[i].endDate + '</div>'
+                + '</div>'
                 + '</div>'
 
-              + '</div>';
+                + '</div>';
             }
 
             $(e.element).popover({
@@ -713,7 +726,7 @@
         saveEvent();
       });
     });
-  </script>
+  </script> -->
   <!-- bootstrap year calendar stop -->
 
 
