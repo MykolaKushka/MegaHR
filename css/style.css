@@ -5122,9 +5122,72 @@ td.days {
 }
 
 
-.calendar .months-container .month-container.month-3{
+/* .calendar .months-container .month-container.month-3{
   max-width: 33%;
   width: 33%;
+} */
+.calendar{
+  position: relative;
+}
+
+.calendar .calendar-header{
+  height: 25px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100px;
+  left: 50%;
+  margin-left: -50px;
+  top: -32px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.calendar .months-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+  width: 100%;
+  padding: 25px 0;
+}
+
+.calendar table{
+  margin: 0 auto 20px;
+}
+
+.calendar table td, .calendar table th{
+  text-align: center;
+  font-size: 12px;
+}
+
+.calendar table.month th.month-title{
+  font-size: 14px;
+  font-weight: 700;
+  padding-bottom: 14px;
+}
+
+.calendar table.month th.day-header{
+  font-size: 12px;
+  font-weight: 600;
+  padding-bottom: 8px;
+}
+
+.calendar table.month th.day-header:first-child, .calendar table.month th.day-header:last-child{
+  color: #F26523;
+}
+
+.calendar table td.day:first-child, .calendar table td.day:last-child{
+  opacity: 0.5;
+}
+
+.calendar table td.day{
+  font-size: 14px;
+  padding: 8px 12px;
 }
 /* calendars block STOP
 ----------------------------------------------------------------------- */
