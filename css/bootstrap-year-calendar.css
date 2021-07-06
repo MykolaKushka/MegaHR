@@ -1,0 +1,447 @@
+/* =========================================================
+ * Bootstrap year calendar v1.1.0
+ * Repo: https://github.com/Paul-DS/bootstrap-year-calendar
+ * =========================================================
+ * Created by Paul David-Sivelle
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ========================================================= */
+
+/* Main */
+.calendar {
+  direction: ltr;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.calendar:after {
+	/* Apply the right height on the calendar div, even if the months elements are floating  */
+	clear: both;
+	content: "";
+	display: block;
+}
+.calendar.calendar-rtl {
+  direction: rtl;
+}
+.calendar.calendar-rtl table tr td span {
+  float: right;
+}
+
+.calendar table {
+  margin: 0 auto 15px;
+}
+.calendar table td,
+.calendar table th {
+  text-align: center;
+  border: none;
+  font-size: 12px;
+}
+
+/* Header */
+.calendar .calendar-header {
+	/*
+  border-bottom: 1px solid #E1E3E5;
+  min-height: 40px;
+	width: 100%;
+	margin-bottom: 25px;
+	*/
+	height: 25px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+.calendar .calendar-header table {
+	display: block;
+	width: 90px;
+	position: relative;
+	top: 3px;
+}
+.calendar .calendar-header table th {
+	display: block;
+	height: auto;
+}
+.calendar .calendar-header table th.year-title {
+	padding: 4px 0;
+	display: none;
+}
+.calendar .calendar-header.active table th.year-title {
+	display: block;
+}
+
+.calendar .calendar-header table th.year-title:not(.year-neighbor, .year-neighbor2) {
+	display: block;
+	position: absolute;
+	padding: 0;
+	width: 54px;
+}
+/*
+.calendar .calendar-header table th.year-title:not(.year-neighbor, .year-neighbor2):hover {
+  color: #F26523;
+}
+.calendar .calendar-header table th.year-title:not(.year-neighbor, .year-neighbor2):after {
+	content: '';
+	border-top: 4px solid #001968;
+	border-right: 4px solid transparent;
+	border-left: 4px solid transparent;
+	position: absolute;
+	top: 6px;
+	right: 1px;
+}
+.calendar .calendar-header table th.year-title:not(.year-neighbor, .year-neighbor2):hover:after {
+  border-top: 4px solid #F78F1E;
+}
+*/
+
+.calendar .calendar-header table th.prev,
+.calendar .calendar-header table th.next {
+	width:20px;
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	cursor: pointer;
+}
+.calendar .calendar-header table th.prev:hover,
+.calendar .calendar-header table th.next:hover {
+	color: #F78F1E;
+}
+.calendar .calendar-header table th.prev {
+	left: 0;
+}
+.calendar .calendar-header table th.next {
+	right: 0;
+}
+.calendar .year-title {
+	font-weight:bold;
+	text-align:center;
+	width:auto;
+}
+
+.calendar .calendar-header table th.disabled,
+.calendar .calendar-header table th.disabled:hover {
+  background: none;
+  cursor: default;
+  color:white;
+}
+
+.calendar table.month th.month-title {
+	font-size: 14px;
+	font-weight: 700;
+	padding-bottom: 14px;
+}
+.table-striped .calendar table.month tr td,
+.table-striped .calendar table.month tr th {
+  background-color: transparent;
+}
+.calendar table.month th.day-header {
+	font-size: 12px;
+	font-weight: 600;
+	padding-bottom: 8px;
+}
+.calendar table.month th.day-header:first-child,
+.calendar table.month th.day-header:last-child {
+	color: #F26523;
+}
+.calendar table td.day {
+	font-size: 14px;
+}
+.calendar table td.day[style] {
+	background-image: url(../images/vector.png);
+	background-position: left top;
+	background-repeat: repeat-x;
+	background-size: auto 100%;
+}
+.calendar table td.day[style]:first-child {
+	-webkit-border-radius: 8px 0 0 8px;
+	-moz-border-radius: 8px 0 0 8px;
+	border-radius: 8px 0 0 8px;
+}
+
+.calendar table td.day:first-child .day-content,
+.calendar table td.day:last-child .day-content {
+	opacity: .5;
+}
+
+.calendar table.month tr td.hidden,
+.calendar table.month tr th.hidden {
+	display: none;
+}
+.calendar table.month td.week-number {
+	cursor: default;
+	font-weight: bold;
+	border-right: 1px solid #eee;
+	padding: 5px;
+}
+
+.calendar .round-left {
+	-webkit-border-radius: 8px 0 0 8px;
+	-moz-border-radius: 8px 0 0 8px;
+	border-radius: 8px 0 0 8px;
+}
+.calendar .round-right {
+	-webkit-border-radius: 0 8px 8px 0 ;
+	-moz-border-radius: 0 8px 8px 0;
+	border-radius: 0 8px 8px 0;
+}
+
+.calendar table.month td.day .day-content:hover {
+	/*
+  background: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+	*/
+}
+.calendar table.month tr td.old,
+.calendar table.month tr td.new,
+.calendar table.month tr td.old:hover,
+.calendar table.month tr td.new:hover {
+  background: none;
+  cursor: default;
+}
+.calendar table.month tr td.disabled,
+.calendar table.month tr td.disabled:hover {
+  color: #dddddd;
+}
+
+.calendar table.month td.day.disabled .day-content:hover {
+	background: none;
+	cursor: default;
+}
+
+.calendar table.month tr td.range .day-content {
+  /*background: rgba(0, 0, 0, 0.2);*/
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+
+.calendar table.month tr td.range.range-start .day-content  {
+  border-top-left-radius:4px;
+  border-bottom-left-radius:4px;
+}
+
+.calendar table.month tr td.range.range-end .day-content  {
+  border-top-right-radius:4px;
+  border-bottom-right-radius:4px;
+}
+
+.calendar-context-menu,
+.calendar-context-menu .submenu {
+	border: 1px solid #ddd;
+	background-color: white;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, .2);
+	-webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, .2);
+	position:absolute;
+	display:none;
+}
+
+.calendar-context-menu .item {
+	padding:5px 10px;
+	cursor:pointer;
+	display:table;
+	width:100%;
+}
+
+.calendar-context-menu .item:hover {
+	background:#eee;
+}
+
+.calendar-context-menu .item .content {
+	display:table-cell;
+}
+
+.calendar-context-menu .item span {
+	display:table-cell;
+	padding-left:10px;
+	text-align:right;
+}
+
+.calendar-context-menu .item span:last-child {
+	display:none;
+}
+
+.calendar-context-menu  .submenu {
+	left: 100%;
+	margin-top: -6px;
+}
+
+.calendar-context-menu  .item:hover > .submenu {
+	display:block;
+}
+
+
+/* Months */
+.calendar .months-container {
+	display: -webkit-flex;
+	-webkit-flex-direction: row;
+	-webkit-flex-wrap: wrap;
+	-webkit-justify-content: space-between;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	text-align:center;
+	width:100%;
+}
+.calendar .calendar-header table th.year-title:not(.year-neighbor, .year-neighbor2),
+.calendar .calendar-header table th.prev,
+.calendar .calendar-header table th.next {
+	top: -34px;
+}
+
+.calendar .calendar-header table th.prev .glyphicon,
+.calendar .calendar-header table th.next .glyphicon {
+	opacity: 0;
+}
+.calendar .calendar-header table th.prev,
+.calendar .calendar-header table th.next {
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.calendar .calendar-header table th.prev {
+	background-image: url(../images/ic-prev.svg);
+}
+.calendar .calendar-header table th.next {
+	background-image: url(../images/ic-next.svg);
+}
+.calendar .calendar-header table th.prev:hover,
+.calendar .calendar-header table th.next:hover {
+	opacity: .6;
+}
+
+
+.calendar table.month tr td .day-content {
+	padding: 8px 12px;
+}
+
+@media (min-width: 1200px) {
+	.calendar .calendar-header table th.year-title:not(.year-neighbor, .year-neighbor2) {
+		left: 50%;
+		-moz-transform:translate(-50%, 0);
+		-ms-transform:translate(-50%, 0);
+		-webkit-transform:translate(-50%, 0);
+		-o-transform:translate(-50%, 0);
+		transform:translate(-50%, 0);
+	}
+}
+@media (max-width: 1199px) {
+	.calendar .calendar-header {
+		position: relative;
+	}
+	.calendar .calendar-header table {
+		position: absolute;
+	}
+	.calendar .calendar-header table th.year-title:not(.year-neighbor, .year-neighbor2) {
+		left: 18px;
+	}
+}
+
+@media (min-width: 1380px) {
+	.calendar .months-container {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	.calendar table.month tr td .day-content {
+		/*padding: 8px 12px;*/
+	}
+}
+@media (min-width: 1200px) and (max-width: 1379px) {
+	.calendar .months-container {
+		padding-left: 22px;
+		padding-right: 22px;
+	}
+	.calendar table.month tr td .day-content {
+		/*padding: 6px 8px;*/
+	}
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+	.my-time-off .mainheader,
+	.time-Off-requests .mainheader {
+		margin-left: 40px;
+		margin-right: 40px;
+	}
+	.calendars-select,
+	.calendars-checkbox {
+		padding-left: 40px;
+		padding-right: 40px;
+	}
+	.calendar .months-container {
+		padding-left: 31px;
+		padding-right: 31px;
+	}
+	.calendar .calendar-header table {
+		right: 40px;
+		top: 7px;
+	}
+	.calendar table.month tr td .day-content {
+		/*padding: 6px 7px;*/
+	}
+}
+@media (max-width: 767px) {
+  .calendars-box {
+    margin-right: -20px;
+    margin-left: -20px;
+  }
+	.calendar table {
+		margin-bottom: 20px;
+	}
+	.calendar .months-container {
+		padding-left: 10px;
+		padding-right: 10px;
+		-webkit-justify-content: space-evenly;
+		justify-content: space-evenly;
+	}
+	.calendar .calendar-header table {
+		right: 20px;
+		top: 7px;
+	}
+	.calendar table.month tr td .day-content {
+		/*padding: 4px;*/
+	}
+}
+
+
+.tooltip-block {
+	display: -webkit-flex;
+	-webkit-flex-direction: row;
+	-webkit-flex-wrap: nowrap;
+	-webkit-justify-content: flex-start;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	background-color: #fff;
+	margin-bottom: 6px;
+}
+.tooltip-bgcolor {
+	width: 10px;
+	height: 10px;
+	border-radius: 2px;
+	margin-right: 10px;
+	position: relative;
+	top: 3px;
+}
+.tooltip-content {
+	width: calc(100% - 30px);
+}
+.tooltip-content {
+	font-weight: 600;
+	font-size: 12px;
+}
+.tooltip-name,
+.tooltip-date {
+	margin-bottom: 3px;
+}

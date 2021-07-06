@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8">
+  <title>MegaHR</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
+  <meta name="format-detection" content="telephone=no" />
+
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap-select.css">
+  <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+
+<body>
+
+  <!-- header START -->
+  <header>
+
+    <div class="bar">
+      <a id="nav-toggle" href="#"><span></span></a>
+    </div>
+
+    <div class="logo">
+      <a href="home.html" title="">
+        <img src="images/logo.svg" alt="" />
+      </a>
+    </div>
+
+    <div class="login-profile">
+      <a href="Manage-your-account.html" title="">
+        <img src="images/icon-profile.svg" alt="" />
+        <span>Profile</span>
+      </a>
+      <a href="login.html" title="">
+        <img src="images/ic-logout.svg" alt="" />
+        <span>Log Out</span>
+      </a>
+    </div>
+
+  </header>
+  <!-- header STOP -->
+
+  <!-- aside START -->
+  <aside>
+    <!-- navigation START -->
+    <nav>
+      <ul class="navigation">
+        <li>
+          <a href="home.html" title="">
+            <img src="images/ic-home.svg" alt="" />
+            <span>Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="My-Details.html" title="">
+            <img src="images/ic-myDetails.svg" alt="">
+            <span>My Details</span>
+          </a>
+        </li>
+        <li class="active">
+          <a href="Payslips.html" title="">
+            <img src="images/ic-payslips.svg" alt="">
+            <span>Payslips</span>
+          </a>
+        </li>
+        <li>
+          <a href="P60s.html" title="">
+            <img src="images/ic-p60s.svg" alt="">
+            <span>P60s</span>
+          </a>
+        </li>
+        <li>
+          <a href="My-Time-Off.html" title="">
+            <img src="images/ic-MyTimeOff.svg" alt="">
+            <span>My Time Off</span>
+          </a>
+        </li>
+        <li>
+          <a href="Dependants.html" title="">
+            <img src="images/ic-dependants.svg" alt="">
+            <span>Dependants</span>
+          </a>
+        </li>
+        <li>
+          <a href="Contacts.html" title="">
+            <img src="images/ic-contacts.svg" alt="">
+            <span>Contacts</span>
+          </a>
+        </li>
+        <li>
+          <a href="My-Catchup.html" title="">
+            <img src="images/ic-myCatchups.svg" alt="">
+            <span>My Catchups</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" title="">
+            <img src="images/ic-megapayMobile.svg" alt="">
+            <span>Megapay Mobile</span>
+          </a>
+        </li>
+        <li>
+          <a href="Time-Off-Requests.html" title="">
+            <img src="images/ic-timeOffrequests.svg" alt="">
+            <span>Time Off Requests</span>
+          </a>
+        </li>
+        <li class="parentnav">
+          <a href="Administration.html" title="">
+            <img src="images/ic-administration.svg" alt="">
+            <span>Administration</span>
+          </a>
+          <ul class="submenunav">
+            <li><a href="admin-home.html" title="">Home Page</a></li>
+            <li><a href="admin-Fields-Access.html" title="">Field Access</a></li>
+            <li><a href="admin-menu-Items.html" title="">Menu Items</a></li>
+            <li><a href="admin-Useful-Links.html" title="">Useful Links</a></li>
+            <li><a href="admin-Users.html" title="">Admin Users</a></li>
+            <li><a href="admin-App-Settings.html" title="">App Settings</a></li>
+            <li><a href="admin-Api-Links.html" title="">Api Links</a></li>
+            <li><a href="admin-Import-Users.html" title="">Import Users</a></li>
+            <li><a href="admin-Databases.html" title="">Databases</a></li>
+            <li><a href="admin-Reset-Password.html" title="">Reset Password</a></li>
+            <li><a href="admin-Log-Table.html" title="">Log Table</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <!-- navigation STOP -->
+    <!-- footer START -->
+    <footer>
+      <img src="images/intelligo.svg" alt="" />
+      <p>Employee Self Service © 2021</p>
+    </footer>
+    <!-- footer STOP -->
+  </aside>
+  <!-- aside STOP -->
+
+  <!-- main START -->
+  <main>
+
+    <!-- Payslips START -->
+    <div class="payslips mainMargin-top">
+
+      <!-- mainheader START -->
+      <div class="mainheader">
+        <h1>Payslips</h1>
+
+        <form method="get">
+          <div class="selectData">
+            <a class="prev" href=""><img src="images/ic-prev.svg" alt="" /></a>
+            <select class="selectpicker show-tick" id="SelectValue" data-val="true"
+              data-val-required="The SelectedPeriod field is required." name="SelectedPeriod">
+              <option value="0">16 Feb, 2021</option>
+              <option value="1">17 Feb, 2021</option>
+              <option value="2">18 Feb, 2021</option>
+              <option selected="selected" value="3">19 Feb, 2021</option>
+              <option value="4">20 Feb, 2021</option>
+              <option value="5">21 Feb, 2021</option>
+            </select>
+            <a class="next" href=""><img src="images/ic-next.svg" alt="" /></a>
+          </div>
+          <div class="butonPrint" onclick="window.print();return false;">Print<img src="images/ic-print.svg" alt="" /></div>
+        </form>
+
+      </div>
+      <!-- mainheader STOP -->
+
+      <!-- maincontent START -->
+      <div class="maincontent">
+
+        <div class="payslips-header">
+          Nick
+        </div>
+
+        <!-- table-1 START -->
+        <div class="table-1">
+
+          <!-- block 1-1 START -->
+          <div class="block">
+            <table>
+              <tr>
+                <td>Employee</td>
+                <td>10</td>
+              </tr>
+              <tr>
+                <td>Name</td>
+                <td>Kimberly Conlon</td>
+              </tr>
+              <tr>
+                <td>PPS No</td>
+                <td>73322311T</td>
+              </tr>
+            </table>
+          </div>
+          <!-- block 1-1 STOP -->
+
+          <!-- block 1-2 START -->
+          <div class="block">
+            <table>
+              <tr>
+                <td>Date</td>
+                <td>19/02/2010</td>
+              </tr>
+              <tr>
+                <td>Reriod</td>
+                <td>W07</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            </table>
+          </div>
+          <!-- block 1-2 STOP -->
+
+          <!-- block 1-3 START -->
+          <div class="block">
+            <table>
+              <tr>
+                <td>Department</td>
+                <td>4 Assembly Line</td>
+              </tr>
+              <tr>
+                <td>Cost Centre</td>
+                <td>4 Production</td>
+              </tr>
+              <tr>
+                <td>Category</td>
+                <td>2 Dublin</td>
+              </tr>
+            </table>
+          </div>
+          <!-- block 1-3 STOP -->
+
+        </div>
+        <!-- table-1 STOP -->
+
+        <!-- table-2 START -->
+        <div class="table-2">
+
+          <!-- block 2-1 START -->
+          <div class="block">
+            <table>
+              <tr>
+                <th colspan="4">
+                  Payments
+                </th>
+              </tr>
+              <tr>
+                <th>Description</th>
+                <th>Units</th>
+                <th>Rate</th>
+                <th>Value</th>
+              </tr>
+              <tr>
+                <td>
+                  <p>Salary</p>
+                </td>
+                <td>
+                  <p></p>
+                </td>
+                <td>
+
+                </td>
+                <td>
+                  <p>4,740.00</p>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <!-- block 2-1 STOP -->
+
+          <!-- block 2-2 START -->
+          <div class="block">
+            <table>
+              <tr>
+                <th>Deductions</th>
+                <th colspan="2">Employee</th>
+                <th colspan="2">Employer</th>
+              </tr>
+              <tr>
+                <th>Description</th>
+                <th>This Per.</th>
+                <th>Balance</th>
+                <th>This Per.</th>
+                <th>This Per.</th>
+              </tr>
+              <tr>
+                <td>
+                  <p>PAYE</p>
+                  <p>PRSI</p>
+                  <p>2% Levy: 1433.00</p>
+                  <p>4% Levy: 1922.00</p>
+                  <p>6% Levy: 1375.00</p>
+                </td>
+                <td>
+                  <p>1,796.40</p>
+                  <p>307.12</p>
+                  <p>28.29</p>
+                  <p>76.88</p>
+                  <p>82.50</p>
+                </td>
+                <td>
+                  <p>11,655.40</p>
+                  <p>2,541.44</p>
+                  <p>173.16</p>
+                  <p>462.12</p>
+                  <p>560.93</p>
+                </td>
+                <td>
+                  <p>509.55</p>
+                </td>
+                <td>
+                  <p>509.55</p>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <!-- block 2-2 STOP -->
+
+        </div>
+        <!-- table-2 STOP -->
+
+        <!-- Note block START-->
+        <div class="note">
+          <h3>Note:</h3>
+          <p>
+            Far too many companies, especially small businesses,
+            neglect to get the basics down in writing early enough.
+          </p>
+        </div>
+        <!-- Note block STOP-->
+
+        <!-- table-3 START -->
+        <div class="table-3">
+
+          <!-- block 3-1 START -->
+          <div class="block">
+            <table>
+              <tr>
+                <th colspan="2">
+                  Tax Calculation
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  <p>Gross Pay</p>
+                  <p>Notional Pay/BIK</p>
+                  <p>Deducations from Gross</p>
+                  <p>Taxable Pay</p>
+                  <p>700.00 @Std Rate (a)</p>
+                  <p>4,040.00 @ High Rate (b)</p>
+                  <p>Tax Credit (c)</p>
+                </td>
+                <td>
+                  <p>29,538</p>
+                  <p>0.00</p>
+                  <p>0.00</p>
+                  <p>29,538.85</p>
+                  <p>140.00</p>
+                  <p>1,654.30</p>
+                  <p>0.00</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <strong>
+                      Total Tax (a+b-c)
+                    </strong>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    <strong>
+                      11,084.93
+                    </strong>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <!-- block 3-1 STOP -->
+
+          <!-- block 3-2 START -->
+          <div class="block">
+            <table>
+              <tr>
+                <th colspan="3">
+                  Tax/PRSI Information
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  <p>PRSI Code</p>
+                  <p>Insurable Weeks YTD</p>
+                  <p>Tax Basis</p>
+                  <p>Emergency Start</p>
+                  <p>Pay Method</p>
+                  <p>Tax Cut Off Point YTD</p>
+                </td>
+                <td>
+                  <p>A1</p>
+                  <p>6</p>
+                  <p>Week 1</p>
+                  <p>1</p>
+                  <p>Cash</p>
+                  <p>700.00</p>
+                </td>
+                <td>
+
+                </td>
+              </tr>
+            </table>
+          </div>
+          <!-- block 3-2 STOP -->
+
+          <!-- block 3-3 START -->
+          <div class="block">
+            <table>
+              <tr>
+                <th colspan="2">
+                  Net Pay Reconciliattion
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  <p>+ Gross Pay</p>
+                  <p>- Deds from Gross</p>
+                  <p>- Total Tax & PRSI</p>
+                  <p>- Total Misc Deds</p>
+                  <p>+ Non Taxable Adj</p>
+                  <p>+ Rounding +</p>
+                  <p>- Rounding -</p>
+                </td>
+                <td>
+                  <p>4,740.00</p>
+                  <p>0.00</p>
+                  <p>2,391.76</p>
+                  <p>0.00</p>
+                  <p>0.00</p>
+                  <p>0.00</p>
+                  <p>0.00</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <strong>
+                      Net Pay
+                    </strong>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    <strong>
+                      2,348.27
+                    </strong>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <!-- block 3-3 STOP -->
+
+        </div>
+        <!-- table-3 STOP -->
+
+      </div>
+      <!-- maincontent STOP -->
+
+    </div>
+    <!-- Payslips START -->
+
+  </main>
+  <!-- main STOP -->
+
+  <div class="pagefon"></div>
+
+
+
+  <script src="js/jquery-2.2.2.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/bootstrap-select.js"></script>
+  <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+  
+
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>
