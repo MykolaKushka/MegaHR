@@ -70,6 +70,7 @@ function createCalendar(months) {
   calendarCode += '<div class="months-container">';
 
   for (let i = 0; i < months; i++) {
+    console.log(monthNumber);
     calendarCode += `<table class="month">
   <thead>
   <tr><th class="month-title" colspan="7">${Months[monthNumber]}</th></tr><tr>`;
@@ -84,7 +85,7 @@ function createCalendar(months) {
 
     monthNumber++;
 
-    checkMonthNumber();
+    checkMonthNumber(monthNumber);
 
     calendarCode += `</tbody></tr></table>`;
   }
@@ -93,17 +94,16 @@ function createCalendar(months) {
 
   calendarArea.innerHTML = calendarCode;
 
-  changeMonthsHandler();
+  changeMonthsHandler(monthNumber);
 }
 
-function checkMonthNumber() {
-  if (monthNumber < 0) {
-    monthNumber = 12 - monthsQuantity;
-    console.log('TEst2 ' + monthNumber);
+function checkMonthNumber(month) {
+  if (month < 0) {
+    monthNumber = 12 + month; // Тут має бути інший алгоритм...
     shownYear--;
     calendarCode = '';
     showYearTitle();
-  } else if (monthNumber > 11) {
+  } else if (month > 12) {
     monthNumber = 0;
     shownYear++;
   }
@@ -118,19 +118,21 @@ $('#monthsQuantitySelector').on('change', (e) => {
   shownYear = currentYear;
   monthsQuantity = e.target.value;
 
-  checkMonthNumber();
+  if (monthsQuantity == 12) monthNumber = 0;
+
+  checkMonthNumber(monthNumber);
 
   createCalendar(monthsQuantity);
 });
 
 // Show prev and next months
-function changeMonthsHandler() {
+function changeMonthsHandler(month) {
   $('.calendar-header').on('click', '.prev', function () {
     calendarCode = '';
 
-    monthNumber = monthNumber - monthsQuantity - monthsQuantity;
+    monthNumber = month - monthsQuantity * 2;
 
-    checkMonthNumber();
+    checkMonthNumber(monthNumber);
 
     createCalendar(monthsQuantity);
   });
