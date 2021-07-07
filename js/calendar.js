@@ -34,7 +34,11 @@ function daysInMonth(iMonth, iYear) {
 
 // Show year
 function showYearTitle() {
-  calendarCode += `<div class="calendar-header"><div class="year-title" colspan="7">${shownYear}</div></div>`;
+  calendarCode += `<div class="calendar-header">
+    <div class="prev" id="prevBtnCalendar"></div>
+    <div class="year-title" colspan="7">${shownYear}</div>
+    <div class="next" id="nextBtnCalendar"></div>
+  </div>`;
 }
 
 // Build days in month table
@@ -60,7 +64,7 @@ function showDaysInMonth(month, year) {
 }
 
 // Build one month
-function buildMonths(months) {
+function createCalendar(months) {
   showYearTitle();
 
   calendarCode += '<div class="months-container">';
@@ -78,12 +82,9 @@ function buildMonths(months) {
 
     showDaysInMonth(monthNumber, shownYear);
 
-    if (monthNumber < 11) {
-      monthNumber++;
-    } else {
-      monthNumber = 0;
-      shownYear++;
-    }
+    monthNumber++;
+
+    checkMonthNumber();
 
     calendarCode += `</tbody></tr></table>`;
   }
@@ -91,15 +92,48 @@ function buildMonths(months) {
   calendarCode += '</div>';
 
   calendarArea.innerHTML = calendarCode;
+
+  changeMonthsHandler();
 }
 
-buildMonths(monthsQuantity);
+function checkMonthNumber() {
+  if (monthNumber < 0) {
+    monthNumber = 12 - monthsQuantity;
+    console.log('TEst2 ' + monthNumber);
+    shownYear--;
+    calendarCode = '';
+    showYearTitle();
+  } else if (monthNumber > 11) {
+    monthNumber = 0;
+    shownYear++;
+  }
+}
 
+createCalendar(monthsQuantity);
+
+// Select months quantity
 $('#monthsQuantitySelector').on('change', (e) => {
   calendarCode = '';
   monthNumber = currentMonth;
   shownYear = currentYear;
   monthsQuantity = e.target.value;
 
-  buildMonths(monthsQuantity);
+  checkMonthNumber();
+
+  createCalendar(monthsQuantity);
 });
+
+// Show prev and next months
+function changeMonthsHandler() {
+  $('.calendar-header').on('click', '.prev', function () {
+    calendarCode = '';
+
+    monthNumber = monthNumber - monthsQuantity - monthsQuantity;
+
+    checkMonthNumber();
+
+    createCalendar(monthsQuantity);
+  });
+
+  $('#nextBtnCalendar').on('click', () => {});
+}

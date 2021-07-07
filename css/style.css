@@ -5138,12 +5138,36 @@ td.days {
   justify-content: center;
   align-items: center;
   position: absolute;
-  width: 100px;
+  width: 130px;
   left: 50%;
-  margin-left: -50px;
+  margin-left: -65px;
   top: -32px;
   font-weight: bold;
   font-size: 12px;
+}
+
+.calendar .calendar-header .year-title{
+  padding: 0 10px;
+}
+
+.calendar .calendar-header .prev, .calendar .calendar-header .next{
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.calendar .calendar-header .prev:hover, .calendar .calendar-header .next:hover, .calendar .calendar-header .prev:active, .calendar .calendar-header .next:active{
+  opacity: 0.6;
+}
+
+.calendar .calendar-header .prev{
+  background-image: url(../images/ic-prev.svg);
+}
+
+.calendar .calendar-header .next{
+  background-image: url(../images/ic-next.svg);
 }
 
 .calendar .months-container{
