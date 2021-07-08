@@ -1,14 +1,10 @@
 let calendarArea = document.querySelector('#calendar');
 let calendarCode = '';
-let today = new Date();
-let currentMonth = today.getMonth();
-let monthNumber = currentMonth;
-let currentYear = today.getFullYear();
-let shownYear = currentYear;
 let monthsQuantitySelector = document.querySelector(
   'select#monthsQuantitySelector'
 );
-let monthsQuantity = monthsQuantitySelector.value;
+let monthsQuantity = parseInt(monthsQuantitySelector.value);
+let startDate = new Date();
 
 const Months = new Array(
   'January',
@@ -34,9 +30,10 @@ function daysInMonth(iMonth, iYear) {
 
 // Show year
 function showYearTitle() {
+  let year = startDate.getFullYear();
   calendarCode += `<div class="calendar-header">
     <div class="prev" id="prevBtnCalendar"></div>
-    <div class="year-title" colspan="7">${shownYear}</div>
+    <div class="year-title" colspan="7">${year}</div>
     <div class="next" id="nextBtnCalendar"></div>
   </div>`;
 }
@@ -64,16 +61,23 @@ function showDaysInMonth(month, year) {
 }
 
 // Build one month
-function createCalendar(months) {
+function createCalendar() {
+  let month;
+  let shownYear;
+  let date = new Date(startDate);
+
+  calendarCode = '';
+
   showYearTitle();
 
   calendarCode += '<div class="months-container">';
 
-  for (let i = 0; i < months; i++) {
-    console.log(monthNumber);
+  for (let i = 0; i < monthsQuantity; i++) {
+    month = date.getMonth();
+    shownYear = date.getFullYear();
     calendarCode += `<table class="month">
   <thead>
-  <tr><th class="month-title" colspan="7">${Months[monthNumber]}</th></tr><tr>`;
+  <tr><th class="month-title" colspan="7">${Months[month]}</th></tr><tr>`;
 
     Days.forEach(
       (item) => (calendarCode += `<th class="day-header">${item}</th>`)
@@ -81,61 +85,37 @@ function createCalendar(months) {
 
     calendarCode += `</tr></thead><tbody>`;
 
-    showDaysInMonth(monthNumber, shownYear);
-
-    monthNumber++;
-
-    checkMonthNumber(monthNumber);
+    showDaysInMonth(month, shownYear);
 
     calendarCode += `</tbody></tr></table>`;
+    date.setMonth(date.getMonth() + 1);
   }
 
   calendarCode += '</div>';
-
   calendarArea.innerHTML = calendarCode;
-
-  changeMonthsHandler(monthNumber);
 }
 
-function checkMonthNumber(month) {
-  if (month < 0) {
-    monthNumber = 12 + month; // Тут має бути інший алгоритм...
-    shownYear--;
-    calendarCode = '';
-    showYearTitle();
-  } else if (month > 12) {
-    monthNumber = 0;
-    shownYear++;
-  }
-}
-
-createCalendar(monthsQuantity);
+createCalendar();
+addMonthsHandler();
 
 // Select months quantity
 $('#monthsQuantitySelector').on('change', (e) => {
-  calendarCode = '';
-  monthNumber = currentMonth;
-  shownYear = currentYear;
-  monthsQuantity = e.target.value;
-
-  if (monthsQuantity == 12) monthNumber = 0;
-
-  checkMonthNumber(monthNumber);
-
-  createCalendar(monthsQuantity);
+  monthsQuantity = parseInt(e.target.value);
+  createCalendar();
+  addMonthsHandler();
 });
 
 // Show prev and next months
-function changeMonthsHandler(month) {
+function addMonthsHandler() {
   $('.calendar-header').on('click', '.prev', function () {
-    calendarCode = '';
-
-    monthNumber = month - monthsQuantity * 2;
-
-    checkMonthNumber(monthNumber);
-
-    createCalendar(monthsQuantity);
+    startDate.setMonth(startDate.getMonth() - monthsQuantity);
+    createCalendar();
+    addMonthsHandler();
   });
 
-  $('#nextBtnCalendar').on('click', () => {});
+  $('.calendar-header').on('click', '.next', function () {
+    startDate.setMonth(startDate.getMonth() + monthsQuantity);
+    createCalendar();
+    addMonthsHandler();
+  });
 }
