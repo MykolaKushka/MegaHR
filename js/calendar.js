@@ -86,13 +86,11 @@ function createCalendar() {
     showDaysInMonth(month, shownYear);
 
     calendarCode += `</tbody></tr></table>`;
-
-    endMonth = date.toLocaleString('en-us', { month: 'short' }).toLowerCase();
-
-    endYear = date.getFullYear();
-
-    date.setMonth(date.getMonth() + 1);
+    if (i < monthsQuantity - 1) date.setMonth(date.getMonth() + 1);
   }
+
+  endMonth = date.toLocaleString('en-us', { month: 'short' }).toLowerCase();
+  endYear = date.getFullYear();
 
   calendarCode += '</div>';
   calendarArea.innerHTML = calendarCode;

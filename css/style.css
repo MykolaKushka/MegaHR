@@ -5122,10 +5122,6 @@ td.days {
 }
 
 
-/* .calendar .months-container .month-container.month-3{
-  max-width: 33%;
-  width: 33%;
-} */
 .calendar{
   position: relative;
 }
@@ -5211,7 +5207,14 @@ td.days {
 
 .calendar table td.day{
   font-size: 14px;
-  padding: 8px 12px;
+  padding: 8px 10px;
 }
+
+
+/* Calendars data */ 
+.day-yellow{
+  background-color: #f2c94c;
+}
+
 /* calendars block STOP
 ----------------------------------------------------------------------- */
