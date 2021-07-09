@@ -5138,9 +5138,9 @@ td.days {
   justify-content: center;
   align-items: center;
   position: absolute;
-  width: 130px;
+  width: 200px;
   left: 50%;
-  margin-left: -65px;
+  margin-left: -100px;
   top: -32px;
   font-weight: bold;
   font-size: 12px;

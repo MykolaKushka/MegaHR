@@ -5,37 +5,33 @@ let monthsQuantitySelector = document.querySelector(
 );
 let monthsQuantity = parseInt(monthsQuantitySelector.value);
 let startDate = new Date();
-
-const Months = new Array(
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December'
-);
+let endMonth = '';
+let endYear = '';
 
 const Days = new Array('S', 'M', 'T', 'W', 'T', 'F', 'S');
 
 // Check how many days in a month
 function daysInMonth(iMonth, iYear) {
-  return 32 - new Date(iYear, iMonth, 32).getDate();
+  return new Date(iYear, iMonth, 0).getDate();
 }
 
 // Show year
 function showYearTitle() {
-  let year = startDate.getFullYear();
   calendarCode += `<div class="calendar-header">
     <div class="prev" id="prevBtnCalendar"></div>
-    <div class="year-title" colspan="7">${year}</div>
+    <div id="year-title" class="year-title" colspan="7"></div>
     <div class="next" id="nextBtnCalendar"></div>
   </div>`;
+}
+
+// Add year and month title
+function addYearMonthsTitle() {
+  let titlePlace = document.querySelector('#year-title');
+  let year = startDate.getFullYear();
+  let startMonth = startDate
+    .toLocaleString('en-us', { month: 'short' })
+    .toLowerCase();
+  titlePlace.innerHTML = `${startMonth} ${year} - ${endMonth} ${endYear}`;
 }
 
 // Build days in month table
@@ -65,6 +61,7 @@ function createCalendar() {
   let month;
   let shownYear;
   let date = new Date(startDate);
+  let monthLongName;
 
   calendarCode = '';
 
@@ -75,9 +72,10 @@ function createCalendar() {
   for (let i = 0; i < monthsQuantity; i++) {
     month = date.getMonth();
     shownYear = date.getFullYear();
+    monthLongName = date.toLocaleString('en-us', { month: 'long' });
     calendarCode += `<table class="month">
   <thead>
-  <tr><th class="month-title" colspan="7">${Months[month]}</th></tr><tr>`;
+  <tr><th class="month-title" colspan="7">${monthLongName}</th></tr><tr>`;
 
     Days.forEach(
       (item) => (calendarCode += `<th class="day-header">${item}</th>`)
@@ -88,6 +86,11 @@ function createCalendar() {
     showDaysInMonth(month, shownYear);
 
     calendarCode += `</tbody></tr></table>`;
+
+    endMonth = date.toLocaleString('en-us', { month: 'short' }).toLowerCase();
+
+    endYear = date.getFullYear();
+
     date.setMonth(date.getMonth() + 1);
   }
 
@@ -96,12 +99,14 @@ function createCalendar() {
 }
 
 createCalendar();
+addYearMonthsTitle();
 addMonthsHandler();
 
 // Select months quantity
 $('#monthsQuantitySelector').on('change', (e) => {
   monthsQuantity = parseInt(e.target.value);
   createCalendar();
+  addYearMonthsTitle();
   addMonthsHandler();
 });
 
@@ -110,12 +115,14 @@ function addMonthsHandler() {
   $('.calendar-header').on('click', '.prev', function () {
     startDate.setMonth(startDate.getMonth() - monthsQuantity);
     createCalendar();
+    addYearMonthsTitle();
     addMonthsHandler();
   });
 
   $('.calendar-header').on('click', '.next', function () {
     startDate.setMonth(startDate.getMonth() + monthsQuantity);
     createCalendar();
+    addYearMonthsTitle();
     addMonthsHandler();
   });
 }
