@@ -15,7 +15,7 @@ const Days = new Array('S', 'M', 'T', 'W', 'T', 'F', 'S');
 
 // Check how many days in a month
 function daysInMonth(iMonth, iYear) {
-  return new Date(iYear, iMonth, 0).getDate();
+  return new Date(iYear, iMonth + 1, 0).getDate();
 }
 
 // Show year
