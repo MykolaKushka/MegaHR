@@ -5,8 +5,11 @@ let monthsQuantitySelector = document.querySelector(
 );
 let monthsQuantity = parseInt(monthsQuantitySelector.value);
 let startDate = new Date();
-let endMonth = '';
+startDate.setDate(1);
+let endMonthTitle = '';
 let endYear = '';
+let endDate;
+let startMonth, startYear;
 
 const Days = new Array('S', 'M', 'T', 'W', 'T', 'F', 'S');
 
@@ -28,10 +31,10 @@ function showYearTitle() {
 function addYearMonthsTitle() {
   let titlePlace = document.querySelector('#year-title');
   let year = startDate.getFullYear();
-  let startMonth = startDate
+  let startMonthTitle = startDate
     .toLocaleString('en-us', { month: 'short' })
     .toLowerCase();
-  titlePlace.innerHTML = `${startMonth} ${year} - ${endMonth} ${endYear}`;
+  titlePlace.innerHTML = `${startMonthTitle} ${year} - ${endMonthTitle} ${endYear}`;
 }
 
 // Build days in month table
@@ -63,6 +66,9 @@ function createCalendar() {
   let date = new Date(startDate);
   let monthLongName;
 
+  startMonth = startDate.getMonth();
+  startYear = startDate.getFullYear();
+
   calendarCode = '';
 
   showYearTitle();
@@ -89,8 +95,14 @@ function createCalendar() {
     if (i < monthsQuantity - 1) date.setMonth(date.getMonth() + 1);
   }
 
-  endMonth = date.toLocaleString('en-us', { month: 'short' }).toLowerCase();
+  endMonthTitle = date
+    .toLocaleString('en-us', { month: 'short' })
+    .toLowerCase();
   endYear = date.getFullYear();
+
+  endDate = new Date(endYear, date.getMonth() + 1, 0);
+
+  //console.log(endDate);
 
   calendarCode += '</div>';
   calendarArea.innerHTML = calendarCode;
@@ -106,6 +118,7 @@ $('#monthsQuantitySelector').on('change', (e) => {
   createCalendar();
   addYearMonthsTitle();
   addMonthsHandler();
+  showDaysOff();
 });
 
 // Show prev and next months
@@ -115,6 +128,7 @@ function addMonthsHandler() {
     createCalendar();
     addYearMonthsTitle();
     addMonthsHandler();
+    showDaysOff();
   });
 
   $('.calendar-header').on('click', '.next', function () {
@@ -122,5 +136,56 @@ function addMonthsHandler() {
     createCalendar();
     addYearMonthsTitle();
     addMonthsHandler();
+    showDaysOff();
   });
 }
+
+// Days off
+let daysOff = [
+  {
+    id: 1,
+    name: 'Cameron Williamson',
+    periods: [
+      {
+        start: '2021-06-12',
+        end: '2021-06-15',
+      },
+      {
+        start: '2021-07-02',
+        end: '2021-07-05',
+      },
+    ],
+  },
+  {
+    id: 2,
+    name: 'Jacob Jones',
+    periods: [
+      {
+        start: '2021-06-17',
+        end: '2021-06-19',
+      },
+      {
+        start: '2021-07-04',
+        end: '2021-07-08',
+      },
+    ],
+  },
+];
+
+//Show days off
+function showDaysOff() {
+  let startOffDate, endOffDate, isStartInPeriod, isEndInPeriod;
+  daysOff.forEach((item) => {
+    item.periods.forEach((period) => {
+      isStartInPeriod = false;
+      isEndInPeriod = false;
+      startOffDate = new Date(period.start);
+      endOffDate = new Date(period.end);
+
+      if (startOffDate >= startDate && startOffDate <= endDate) {
+      }
+    });
+  });
+}
+
+showDaysOff();
