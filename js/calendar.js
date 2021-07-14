@@ -51,10 +51,10 @@ function showDaysInMonth(month, year) {
         calendarCode += '<td></td>';
       } else if (date > daysInMonth(month, year)) {
       } else {
-        _day = date < 10 ? `0${date}` : date;
+        _day = date < 10 ? '0' + date : date;
         _month = month;
         _month = _month + 1;
-        _month = _month < 10 ? `0${_month}` : _month;
+        _month = _month < 10 ? '0' + _month : _month;
         calendarCode += `<td class="day" id="d-${year}-${_month}-${_day}">${date}</td>`;
         date++;
       }
@@ -149,7 +149,8 @@ function addMonthsHandler() {
 // Days off
 let daysOff = [
   {
-    id: 1,
+    id: 0,
+    color: '#f2c94c',
     name: 'Cameron Williamson',
     periods: [
       {
@@ -157,14 +158,15 @@ let daysOff = [
         end: '2021-07-06',
       },
       {
-        start: '2021-08-02',
-        end: '2021-08-05',
+        start: '2021-08-09',
+        end: '2021-08-18',
       },
     ],
   },
   {
-    id: 2,
-    name: 'Jacob Jones',
+    id: 1,
+    color: '#F78F1E',
+    name: 'Ronald Richards',
     periods: [
       {
         start: '2021-09-27',
@@ -172,14 +174,59 @@ let daysOff = [
       },
     ],
   },
+  {
+    id: 2,
+    color: '#56ccf2',
+    name: 'Jacob Jones',
+    periods: [
+      {
+        start: '2021-07-19',
+        end: '2021-07-23',
+      },
+    ],
+  },
+  {
+    id: 3,
+    color: '#bb6bd9',
+    name: 'Bessie Cooper',
+    periods: [
+      {
+        start: '2021-11-14',
+        end: '2021-11-20',
+      },
+    ],
+  },
+  {
+    id: 4,
+    color: '#6fcf97',
+    name: 'Devon Lane',
+    periods: [
+      {
+        start: '2021-09-01',
+        end: '2021-09-13',
+      },
+    ],
+  },
 ];
 
 //Show days off
 function showDaysOff() {
-  let startOffDate, endOffDate, isStartInPeriod, isEndInPeriod, id;
+  let startOffDate,
+    endOffDate,
+    isStartInPeriod,
+    isEndInPeriod,
+    id,
+    color,
+    employeeId = 0,
+    _day,
+    _month;
   let _startDate = new Date(startDate);
   _startDate.setHours(0, 0, 0, 0);
   daysOff.forEach((item) => {
+    if (employeeId != item.id) {
+      employeeId = item.id;
+    }
+    color = item.color;
     item.periods.forEach((period) => {
       isStartInPeriod = false;
       isEndInPeriod = false;
@@ -212,10 +259,12 @@ function showDaysOff() {
           day <= endOffDate;
           day.setDate(day.getDate() + 1)
         ) {
-          let tzoffset = new Date().getTimezoneOffset() * 60000; //offset in milliseconds
-          day = new Date(day - tzoffset);
-          id = day.toISOString().slice(0, 10);
-          document.getElementById('d-' + id).classList.add('day-yellow');
+          _day = day.getDate() < 10 ? '0' + day.getDate() : day.getDate();
+          _month = day.getMonth();
+          _month = _month + 1;
+          _month = _month < 10 ? '0' + _month : _month;
+          id = `d-${day.getFullYear()}-${_month}-${_day}`;
+          document.getElementById(id).style.backgroundColor = color;
         }
       }
     });
