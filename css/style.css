@@ -5202,7 +5202,7 @@ td.days {
 }
 
 .calendar table td.day:first-child, .calendar table td.day:last-child{
-  opacity: 0.5;
+  color: rgba(0, 25, 104, .5)
 }
 
 .calendar table td.day{
@@ -5214,6 +5214,10 @@ td.days {
 /* Calendars data */ 
 .day-yellow{
   background-color: #f2c94c;
+}
+
+.day-orange{
+  background-color: #F78F1E
 }
 
 /* calendars block STOP
