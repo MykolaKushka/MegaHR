@@ -219,10 +219,14 @@ function showDaysOff() {
     color,
     employeeId = 0,
     _day,
-    _month;
+    _month,
+    isFirstDay,
+    isLastDay;
   let _startDate = new Date(startDate);
   _startDate.setHours(0, 0, 0, 0);
   daysOff.forEach((item) => {
+    isFirstDay = false;
+    isLastDay = false;
     if (employeeId != item.id) {
       employeeId = item.id;
     }
@@ -237,10 +241,12 @@ function showDaysOff() {
 
       if (startOffDate >= _startDate && startOffDate <= endDate) {
         isStartInPeriod = true;
+        isFirstDay = true;
       }
 
       if (endOffDate >= _startDate && endOffDate <= endDate) {
         isEndInPeriod = true;
+        isLastDay = true;
       }
 
       if (isStartInPeriod && !isEndInPeriod) {
@@ -265,6 +271,13 @@ function showDaysOff() {
           _month = _month < 10 ? '0' + _month : _month;
           id = `d-${day.getFullYear()}-${_month}-${_day}`;
           document.getElementById(id).style.backgroundColor = color;
+
+          // Add styles for first and last day of period
+          if (_day == startOffDate.getDate() && isFirstDay) {
+            document.getElementById(id).classList.add('day-first');
+          } else if (_day == endOffDate.getDate() && isLastDay) {
+            document.getElementById(id).classList.add('day-last');
+          }
         }
       }
     });
