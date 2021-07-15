@@ -5218,5 +5218,14 @@ td.days {
   border-radius: 0 8px 8px 0;
 }
 
+.day-multi{
+  background-image: url(../images/vector.png);
+  background-position: left top;
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+  background-color: rgb(242, 101, 35);
+  border-radius: 0;
+}
+
 /* calendars block STOP
 ----------------------------------------------------------------------- */

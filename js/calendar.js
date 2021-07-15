@@ -161,6 +161,10 @@ let daysOff = [
         start: '2021-08-09',
         end: '2021-08-18',
       },
+      {
+        start: '2021-09-23',
+        end: '2021-09-29',
+      },
     ],
   },
   {
@@ -270,7 +274,11 @@ function showDaysOff() {
           _month = _month + 1;
           _month = _month < 10 ? '0' + _month : _month;
           id = `d-${day.getFullYear()}-${_month}-${_day}`;
-          document.getElementById(id).style.backgroundColor = color;
+
+          if (document.getElementById(id).style.backgroundColor) {
+            document.getElementById(id).style = '';
+            document.getElementById(id).classList.add('day-multi');
+          } else document.getElementById(id).style.backgroundColor = color;
 
           // Add styles for first and last day of period
           if (_day == startOffDate.getDate() && isFirstDay) {
