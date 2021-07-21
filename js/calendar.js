@@ -213,7 +213,59 @@ let daysOff = [
   },
 ];
 
-//Show days off
+// Checkbox filters
+let calendarFilter = document.querySelector('#calendarFilter');
+let filtersCode = '';
+let cssCheckboxesColors = '';
+
+function addCheckbox(name, color, id) {
+  filtersCode += `<label class="mycheckbox-2 bgcolor-${id}">
+      <input id="employee-${id}" type="checkbox" checked>
+      <span>${name}</span>
+    </label>`;
+
+  calendarFilter.innerHTML = filtersCode;
+
+  cssCheckboxesColors += `
+    .calendars-checkbox .mycheckbox-2.bgcolor-${id} input:checked + span::before{
+      background-color: ${color};
+    }
+
+    .calendars-checkbox .mycheckbox-2.bgcolor-${id} span::before{
+      border-color: ${color};
+    }`;
+}
+
+// Filter handlers
+function filterHandlers() {
+  let checkboxFilters = document.querySelectorAll('#calendarFilter input');
+
+  document.addEventListener(
+    'DOMContentLoaded',
+    function () {
+      for (let checkbox of checkboxFilters) {
+        checkbox.addEventListener('change', function () {
+          cleanData();
+          showDaysOff();
+        });
+      }
+    },
+    false
+  );
+}
+
+// Clean data
+function cleanData() {
+  let dataDays = document.querySelectorAll('#calendar .day');
+  for (let dayItem of dataDays) {
+    dayItem.classList.remove('day-first');
+    dayItem.classList.remove('day-last');
+    dayItem.classList.remove('day-multi');
+    dayItem.removeAttribute('style');
+  }
+}
+
+// Show days off
 function showDaysOff() {
   let startOffDate,
     endOffDate,
@@ -226,70 +278,93 @@ function showDaysOff() {
     _month,
     isFirstDay,
     isLastDay;
+  filtersCode = '';
+  cssCheckboxesColors = '';
+
   let _startDate = new Date(startDate);
   _startDate.setHours(0, 0, 0, 0);
   daysOff.forEach((item) => {
-    isFirstDay = false;
-    isLastDay = false;
-    if (employeeId != item.id) {
-      employeeId = item.id;
+    let checkbox = document.querySelector(
+      `#calendarFilter #employee-${item.id}`
+    );
+    if (!checkbox) {
+      addCheckbox(item.name, item.color, item.id);
     }
-    color = item.color;
-    item.periods.forEach((period) => {
-      isStartInPeriod = false;
-      isEndInPeriod = false;
-      startOffDate = new Date(period.start);
-      startOffDate.setHours(0, 0, 0, 0);
-      endOffDate = new Date(period.end);
-      endOffDate.setHours(23, 59, 59, 999);
 
-      if (startOffDate >= _startDate && startOffDate <= endDate) {
-        isStartInPeriod = true;
-        isFirstDay = true;
+    // Check if employee checkbox is checked
+    let employeeCheckboxId = `#employee-${item.id}`;
+
+    if ($(employeeCheckboxId)[0].checked) {
+      isFirstDay = false;
+      isLastDay = false;
+      if (employeeId != item.id) {
+        employeeId = item.id;
       }
+      color = item.color;
+      item.periods.forEach((period) => {
+        isStartInPeriod = false;
+        isEndInPeriod = false;
+        startOffDate = new Date(period.start);
+        startOffDate.setHours(0, 0, 0, 0);
+        endOffDate = new Date(period.end);
+        endOffDate.setHours(23, 59, 59, 999);
 
-      if (endOffDate >= _startDate && endOffDate <= endDate) {
-        isEndInPeriod = true;
-        isLastDay = true;
-      }
+        if (startOffDate >= _startDate && startOffDate <= endDate) {
+          isStartInPeriod = true;
+          isFirstDay = true;
+        }
 
-      if (isStartInPeriod && !isEndInPeriod) {
-        endOffDate = new Date(endDate);
-        isEndInPeriod = true;
-      }
+        if (endOffDate >= _startDate && endOffDate <= endDate) {
+          isEndInPeriod = true;
+          isLastDay = true;
+        }
 
-      if (!isStartInPeriod && isEndInPeriod) {
-        startOffDate = new Date(_startDate);
-        isStartInPeriod = true;
-      }
+        if (isStartInPeriod && !isEndInPeriod) {
+          endOffDate = new Date(endDate);
+          isEndInPeriod = true;
+        }
 
-      if (isStartInPeriod && isEndInPeriod) {
-        for (
-          let day = new Date(startOffDate);
-          day <= endOffDate;
-          day.setDate(day.getDate() + 1)
-        ) {
-          _day = day.getDate() < 10 ? '0' + day.getDate() : day.getDate();
-          _month = day.getMonth();
-          _month = _month + 1;
-          _month = _month < 10 ? '0' + _month : _month;
-          id = `d-${day.getFullYear()}-${_month}-${_day}`;
+        if (!isStartInPeriod && isEndInPeriod) {
+          startOffDate = new Date(_startDate);
+          isStartInPeriod = true;
+        }
 
-          if (document.getElementById(id).style.backgroundColor) {
-            document.getElementById(id).style = '';
-            document.getElementById(id).classList.add('day-multi');
-          } else document.getElementById(id).style.backgroundColor = color;
+        if (isStartInPeriod && isEndInPeriod) {
+          for (
+            let day = new Date(startOffDate);
+            day <= endOffDate;
+            day.setDate(day.getDate() + 1)
+          ) {
+            _day = day.getDate() < 10 ? '0' + day.getDate() : day.getDate();
+            _month = day.getMonth();
+            _month = _month + 1;
+            _month = _month < 10 ? '0' + _month : _month;
+            id = `d-${day.getFullYear()}-${_month}-${_day}`;
 
-          // Add styles for first and last day of period
-          if (_day == startOffDate.getDate() && isFirstDay) {
-            document.getElementById(id).classList.add('day-first');
-          } else if (_day == endOffDate.getDate() && isLastDay) {
-            document.getElementById(id).classList.add('day-last');
+            if (document.getElementById(id).style.backgroundColor) {
+              document.getElementById(id).style = '';
+              document.getElementById(id).classList.add('day-multi');
+            } else document.getElementById(id).style.backgroundColor = color;
+
+            // Add styles for first and last day of period
+            if (_day == startOffDate.getDate() && isFirstDay) {
+              document.getElementById(id).classList.add('day-first');
+            } else if (_day == endOffDate.getDate() && isLastDay) {
+              document.getElementById(id).classList.add('day-last');
+            }
           }
         }
-      }
-    });
+      });
+    }
   });
+
+  let style = document.createElement('style');
+  style.innerHTML = cssCheckboxesColors;
+  document.head.appendChild(style);
+
+  filterHandlers();
 }
 
 showDaysOff();
+
+// Hover handler
