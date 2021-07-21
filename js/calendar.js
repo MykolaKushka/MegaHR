@@ -378,3 +378,35 @@ function showDaysOff() {
 showDaysOff();
 
 // Hover handler
+function hoverHandler() {
+  let dataDays = document.querySelectorAll('#calendar .day');
+
+  for (let dayItem of dataDays) {
+    dayItem.addEventListener('mouseenter', (e) => {
+      if (
+        e.target.classList.contains('day-multi') ||
+        e.target.style.backgroundColor != ''
+      )
+        showTooltip(e.target);
+    });
+
+    dayItem.addEventListener('mouseleave', (e) => {
+      if (
+        e.target.classList.contains('day-multi') ||
+        e.target.style.backgroundColor != ''
+      ) {
+        let tooltip = document.querySelectorAll(`#${e.target.id} .day-tooltip`);
+        document.getElementById(`${e.target.id}`).removeChild(tooltip[0]);
+      }
+    });
+  }
+}
+
+function showTooltip(el) {
+  let tooltip = document.createElement('div');
+  tooltip.className = 'day-tooltip';
+  tooltip.innerHTML = 'Text';
+  el.append(tooltip);
+}
+
+hoverHandler();
