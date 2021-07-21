@@ -5,6 +5,7 @@ let monthsQuantitySelector = document.querySelector(
 );
 let monthsQuantity = parseInt(monthsQuantitySelector.value);
 let startDate = new Date();
+startDate.setMonth(0);
 startDate.setDate(1);
 let endMonthTitle = '';
 let endYear = '';
@@ -121,6 +122,15 @@ addMonthsHandler();
 // Select months quantity
 $('#monthsQuantitySelector').on('change', (e) => {
   monthsQuantity = parseInt(e.target.value);
+  // Set start depends on select
+  if (monthsQuantity != 12) {
+    startDate = new Date();
+    startDate.setDate(1);
+  } else {
+    startDate = new Date();
+    startDate.setMonth(0);
+    startDate.setDate(1);
+  }
   createCalendar();
   addYearMonthsTitle();
   addMonthsHandler();
