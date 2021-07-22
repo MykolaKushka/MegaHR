@@ -5222,6 +5222,10 @@ td.days {
   border-radius: 0 8px 8px 0;
 }
 
+.day-first.day-last{
+  border-radius: 8px;
+}
+
 .day-multi{
   background-image: url(../images/vector.png);
   background-position: left top;
@@ -5240,6 +5244,14 @@ td.days {
   top: 15px;
   left: calc(100% + 15px);
   z-index: 2;
+}
+
+.calendar table td.day:first-child .day-tooltip, .calendar table td.day:nth-child(7n) .day-tooltip{
+  color: rgba(0, 25, 104, 1)
+}
+
+.calendar-content .mCSB_container, .calendar-content .mCustomScrollBox{
+  overflow: visible;
 }
 
 /* calendars block STOP
