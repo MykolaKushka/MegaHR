@@ -5226,6 +5226,10 @@ td.days {
   border-radius: 8px;
 }
 
+.day-first.day-last.day-multi{
+  border-radius: 0px;
+}
+
 .day-multi{
   background-image: url(../images/vector.png);
   background-position: left top;

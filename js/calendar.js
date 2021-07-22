@@ -252,7 +252,12 @@ let monthsQuantitySelector = document.querySelector(
 );
 let monthsQuantity = parseInt(monthsQuantitySelector.value);
 let startDate = new Date();
-startDate.setMonth(0);
+
+// Set month if year selected
+if ($('#monthsQuantitySelector')[0].value == '12') {
+  startDate.setMonth(0);
+}
+
 startDate.setDate(1);
 let endMonthTitle = '';
 let endYear = '';
@@ -356,8 +361,6 @@ function createCalendar() {
   endDate = new Date(endYear, date.getMonth() + 1, 0);
   endDate.setHours(23, 59, 59, 999);
 
-  //console.log(endDate);
-
   calendarCode += '</div>';
   calendarArea.innerHTML = calendarCode;
 }
@@ -387,11 +390,19 @@ $('#monthsQuantitySelector').on('change', (e) => {
 // Show prev and next months
 function addMonthsHandler() {
   $('.calendar-header').on('click', '.prev', function () {
-    startDate.setMonth(startDate.getMonth() - monthsQuantity);
-    createCalendar();
-    addYearMonthsTitle();
-    addMonthsHandler();
-    showDaysOff();
+    // Check start period for calendar
+    let tempDate = new Date(startDate);
+    tempDate.setMonth(tempDate.getMonth() - monthsQuantity);
+    if (
+      tempDate.getFullYear() >= daysOff.AbsenceDataCutOffYear &&
+      tempDate.getMonth() >= 0
+    ) {
+      startDate.setMonth(startDate.getMonth() - monthsQuantity);
+      createCalendar();
+      addYearMonthsTitle();
+      addMonthsHandler();
+      showDaysOff();
+    }
   });
 
   $('.calendar-header').on('click', '.next', function () {
@@ -543,7 +554,6 @@ function showDaysOff() {
             _day == endOffDate.getDate() &&
             isLastDay
           ) {
-            console.log(id);
             document.getElementById(id).classList.add('day-first');
             document.getElementById(id).classList.add('day-last');
           } else if (_day == startOffDate.getDate() && isFirstDay) {
