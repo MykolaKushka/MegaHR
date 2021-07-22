@@ -385,6 +385,7 @@ $('#monthsQuantitySelector').on('change', (e) => {
   addYearMonthsTitle();
   addMonthsHandler();
   showDaysOff();
+  hoverHandler();
 });
 
 // Show prev and next months
@@ -402,6 +403,7 @@ function addMonthsHandler() {
       addYearMonthsTitle();
       addMonthsHandler();
       showDaysOff();
+      hoverHandler();
     }
   });
 
@@ -411,6 +413,7 @@ function addMonthsHandler() {
     addYearMonthsTitle();
     addMonthsHandler();
     showDaysOff();
+    hoverHandler();
   });
 }
 
@@ -466,6 +469,11 @@ function cleanData() {
   }
 }
 
+// Show holydays
+function showHolydays(holyday) {
+  document.getElementById(`d-${holyday}`).classList.add('day-holyday');
+}
+
 // Show days off
 function showDaysOff() {
   let startOffDate,
@@ -484,6 +492,18 @@ function showDaysOff() {
 
   let _startDate = new Date(startDate);
   _startDate.setHours(0, 0, 0, 0);
+
+  daysOff.CalendarNationalHolidays.forEach((holyday) => {
+    holyday = holyday.slice(0, 10);
+    holydayDate = new Date(holyday);
+    holydayDate.setHours(0, 0, 0, 0);
+
+    // Check if holyday is in shown period
+    if (holydayDate >= _startDate && holydayDate <= endDate) {
+      showHolydays(holyday);
+    }
+  });
+
   daysOff.Data.forEach((item) => {
     let checkbox = document.querySelector(
       `#calendarFilter #employee-${item.EmployeeId}`

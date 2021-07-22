@@ -5201,7 +5201,7 @@ td.days {
   color: #F26523;
 }
 
-.calendar table td.day:first-child, .calendar table td.day:nth-child(7n){
+.calendar table td.day:first-child, .calendar table td.day:nth-child(7n), .calendar .day-holyday{
   color: rgba(0, 25, 104, .5)
 }
 
@@ -5210,27 +5210,27 @@ td.days {
   padding: 8px 10px;
 }
 
-.day{
+.calendar .day{
   position: relative;
 }
 
-.day-first{
+.calendar .day-first{
   border-radius: 8px 0 0 8px;
 }
 
-.day-last{
+.calendar .day-last{
   border-radius: 0 8px 8px 0;
 }
 
-.day-first.day-last{
+.calendar .day-first.day-last{
   border-radius: 8px;
 }
 
-.day-first.day-last.day-multi{
+.calendar .day-first.day-last.day-multi{
   border-radius: 0px;
 }
 
-.day-multi{
+.calendar .day-multi{
   background-image: url(../images/vector.png);
   background-position: left top;
   background-repeat: repeat-x;
@@ -5239,7 +5239,7 @@ td.days {
   border-radius: 0;
 }
 
-.day-tooltip{
+.calendar .day-tooltip{
   position: absolute;
   background: white;
   padding: 15px;
