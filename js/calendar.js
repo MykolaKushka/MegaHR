@@ -570,12 +570,12 @@ function showTooltip(el) {
     ) {
       let startData = new Date(item.AbsenceStartDate.slice(0, 10));
       let startDay = startData.getDate();
-      startDay.toString().padStart(2, '0');
+      startDay = startDay.toString().padStart(2, '0');
       let startMonth = startData.toLocaleString('en', { month: 'short' });
 
       let endData = new Date(item.AbsenceFinishDate.slice(0, 10));
       let endDay = endData.getDate();
-      endDay.toString().padStart(2, '0');
+      endDay = endDay.toString().padStart(2, '0');
       let endMonth = endData.toLocaleString('en', { month: 'short' });
 
       data += `<p><i style="background-color:#${item.AbsenceLabelColor}"></i><span>${item.EmployeeName}</span><br><span>${startDay} ${startMonth} - ${endDay} ${endMonth}</span></p>`;
