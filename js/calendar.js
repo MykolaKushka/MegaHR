@@ -1,70 +1,3 @@
-// Days off
-// let daysOff = [
-//   {
-//     id: 0,
-//     color: '#f2c94c',
-//     name: 'Cameron Williamson',
-//     periods: [
-//       {
-//         start: '2021-06-28',
-//         end: '2021-07-06',
-//       },
-//       {
-//         start: '2021-08-09',
-//         end: '2021-08-18',
-//       },
-//       {
-//         start: '2021-09-23',
-//         end: '2021-09-29',
-//       },
-//     ],
-//   },
-//   {
-//     id: 1,
-//     color: '#F78F1E',
-//     name: 'Ronald Richards',
-//     periods: [
-//       {
-//         start: '2021-09-27',
-//         end: '2021-10-01',
-//       },
-//     ],
-//   },
-//   {
-//     id: 2,
-//     color: '#56ccf2',
-//     name: 'Jacob Jones',
-//     periods: [
-//       {
-//         start: '2021-07-19',
-//         end: '2021-07-23',
-//       },
-//     ],
-//   },
-//   {
-//     id: 3,
-//     color: '#bb6bd9',
-//     name: 'Bessie Cooper',
-//     periods: [
-//       {
-//         start: '2021-11-14',
-//         end: '2021-11-20',
-//       },
-//     ],
-//   },
-//   {
-//     id: 4,
-//     color: '#6fcf97',
-//     name: 'Devon Lane',
-//     periods: [
-//       {
-//         start: '2021-09-01',
-//         end: '2021-09-13',
-//       },
-//     ],
-//   },
-// ];
-
 let daysOff = {
   Data: [
     {
@@ -304,10 +237,10 @@ function showDaysInMonth(month, year) {
         calendarCode += '<td></td>';
       } else if (date > daysInMonth(month, year)) {
       } else {
-        _day = date < 10 ? '0' + date : date;
+        _day = date.toString().padStart(2, '0');
         _month = month;
         _month = _month + 1;
-        _month = _month < 10 ? '0' + _month : _month;
+        _month = _month.toString().padStart(2, '0');
         calendarCode += `<td class="day" id="d-${year}-${_month}-${_day}">${date}</td>`;
         date++;
       }
@@ -555,10 +488,10 @@ function showDaysOff() {
           day <= endOffDate;
           day.setDate(day.getDate() + 1)
         ) {
-          _day = day.getDate() < 10 ? '0' + day.getDate() : day.getDate();
+          _day = day.getDate().toString().padStart(2, '0');
           _month = day.getMonth();
           _month = _month + 1;
-          _month = _month < 10 ? '0' + _month : _month;
+          _month = _month.toString().padStart(2, '0');
           id = `d-${day.getFullYear()}-${_month}-${_day}`;
 
           if (document.getElementById(id).style.backgroundColor) {
@@ -620,10 +553,36 @@ function hoverHandler() {
   }
 }
 
+// Show Tooltip data
 function showTooltip(el) {
   let tooltip = document.createElement('div');
   tooltip.className = 'day-tooltip';
-  tooltip.innerHTML = el.id;
+
+  let date = new Date(el.id.slice(2, 12));
+  let data = '';
+
+  daysOff.Data.forEach((item) => {
+    let employeeCheckboxId = `#employee-${item.EmployeeId}`;
+    if (
+      $(employeeCheckboxId)[0].checked &&
+      date >= new Date(item.AbsenceStartDate.slice(0, 10)) &&
+      date <= new Date(item.AbsenceFinishDate.slice(0, 10))
+    ) {
+      let startData = new Date(item.AbsenceStartDate.slice(0, 10));
+      let startDay = startData.getDate();
+      startDay.toString().padStart(2, '0');
+      let startMonth = startData.toLocaleString('en', { month: 'short' });
+
+      let endData = new Date(item.AbsenceFinishDate.slice(0, 10));
+      let endDay = endData.getDate();
+      endDay.toString().padStart(2, '0');
+      let endMonth = endData.toLocaleString('en', { month: 'short' });
+
+      data += `<p><i style="background-color:#${item.AbsenceLabelColor}"></i><span>${item.EmployeeName}</span><br><span>${startDay} ${startMonth} - ${endDay} ${endMonth}</span></p>`;
+    }
+  });
+
+  tooltip.innerHTML = data;
   el.append(tooltip);
 }
 

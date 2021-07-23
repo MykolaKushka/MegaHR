@@ -5242,12 +5242,37 @@ td.days {
 .calendar .day-tooltip{
   position: absolute;
   background: white;
-  padding: 15px;
+  padding: 15px 15px 8px;
   border-radius: 5px;
   box-shadow: 0px 11px 40px rgba(3, 27, 103, 0.1);
   top: 15px;
   left: calc(100% + 15px);
   z-index: 2;
+  width: 150px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+}
+
+.calendar .day-tooltip p{
+  margin-bottom: 7px;
+  position: relative;
+  padding-left: 19px;
+}
+
+.calendar .day-tooltip p span{
+  white-space: nowrap;
+}
+
+.calendar .day-tooltip i{
+  display: inline-block;
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  left: 0;
+  top: 5px;
+  border-radius: 2px;
 }
 
 .calendar table td.day:first-child .day-tooltip, .calendar table td.day:nth-child(7n) .day-tooltip{
