@@ -561,7 +561,25 @@ function calendarInit() {
     }
   }
 
-  // Show Tooltip data
+  // Check tooltip position
+  function tooltipPosition(e, position) {
+    const rect = e.getBoundingClientRect();
+    let elemWidth = 150;
+    let rightElPosition = rect.right + elemWidth;
+    if (
+      rightElPosition >=
+      (window.innerWidth || document.documentElement.clientWidth)
+    ) {
+      position.style.top = '40px';
+      position.style.left = 'auto';
+      position.style.right = '30px';
+    } else {
+      position.style.top = '40px';
+      position.style.left = `30px`;
+    }
+  }
+
+  // Show tooltip data
   function showTooltip(el) {
     let tooltip = document.createElement('div');
     tooltip.className = 'day-tooltip';
@@ -591,6 +609,9 @@ function calendarInit() {
     });
 
     tooltip.innerHTML = data;
+
+    tooltipPosition(el, tooltip);
+
     el.append(tooltip);
   }
 

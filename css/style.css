@@ -5119,6 +5119,10 @@ td.days {
     padding-left: 20px;
     padding-right: 20px;
   }
+
+  .calendars-select{
+    padding-bottom: 30px;
+  }
 }
 
 
@@ -5215,8 +5219,8 @@ td.days {
 }
 
 .calendar .day{
-  position: relative;
   border-bottom: 2px solid #F9F9FA;
+  position: relative;
 }
 
 .calendar .day-first{
@@ -5245,8 +5249,6 @@ td.days {
   padding: 15px 15px 8px;
   border-radius: 5px;
   box-shadow: 0px 11px 40px rgba(3, 27, 103, 0.1);
-  top: 15px;
-  left: calc(100% + 15px);
   z-index: 2;
   width: 150px;
   text-align: left;
