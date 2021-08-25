@@ -1,2 +1,108 @@
-<a href="home.html">Home</a>
-<a href="login.html">Login</a>
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8">
+  <title>MegaHR</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
+  <meta name="format-detection" content="telephone=no" />
+
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap-select.css">
+
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <!-- Remove those styles from main project -->
+  <style>
+    body {
+      overflow: auto;
+    }
+
+    main {
+      margin: 0 auto;
+      padding: 0 15px;
+      height: 100%;
+      top: 0;
+    }
+  </style>
+  <!-- Remove those styles from main project -->
+
+</head>
+
+<body>
+
+  <!-- main START -->
+  <main class="calendar-content">
+
+    <!-- My Time Off page START -->
+    <div class="my-time-off mainMargin-top">
+
+      <!-- mainheader START -->
+      <div class="mainheader">
+        <h1>My Time Off</h1>
+      </div>
+      <!-- mainheader STOP -->
+
+      <!-- maincontent START -->
+      <div class="maincontent">
+
+        <!-- calendars box START -->
+        <div class="calendars-box">
+
+          <!-- calendars-select START -->
+          <div class="calendars-select">
+
+            <div class="month-select">
+              <select id="monthsQuantitySelector" name="" class="selectpicker show-tick">
+                <option value="3">3 Month</option>
+                <option value="6">6 Month</option>
+                <option value="12" selected="selected">12 Month</option>
+              </select>
+            </div>
+
+          </div>
+          <!-- calendars-select STOP -->
+
+
+
+          <!-- calendars START -->
+          <div class="calendars">
+            <div id="calendar" class="calendar">
+            </div>
+          </div>
+          <!-- calendars STOP -->
+
+
+
+          <!-- calendars-checkbox START -->
+          <div id="calendarFilter" class="calendars-checkbox"></div>
+          <!-- calendars-checkbox STOP -->
+
+        </div>
+        <!-- calendars box STOP -->
+
+      </div>
+      <!-- maincontent STOP -->
+
+    </div>
+    <!-- My Time Off page STOP -->
+
+  </main>
+  <!-- main STOP -->
+
+
+
+  <script src="js/jquery-2.2.2.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/bootstrap-select.js"></script>
+
+  <!-- bootstrap year calendar start -->
+  <script src="js/calendar.js"></script>
+
+</body>
+
+</html>
