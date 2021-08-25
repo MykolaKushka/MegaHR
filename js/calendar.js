@@ -241,7 +241,7 @@ function calendarInit() {
         } else {
           _day = date.toString().padStart(2, '0');
           _month = month;
-          _month = _month + 1;
+          _month++;
           _month = _month.toString().padStart(2, '0');
           calendarCode += `<td class="day" id="d-${year}-${_month}-${_day}">${date}</td>`;
           date++;
@@ -400,9 +400,7 @@ function calendarInit() {
   function cleanData() {
     let dataDays = document.querySelectorAll('#calendar .day');
     for (let dayItem of dataDays) {
-      dayItem.classList.remove('day-first');
-      dayItem.classList.remove('day-last');
-      dayItem.classList.remove('day-multi');
+      dayItem.classList.remove('day-first', 'day-last', 'day-multi');
       dayItem.removeAttribute('style');
     }
   }
@@ -495,7 +493,7 @@ function calendarInit() {
           ) {
             _day = day.getDate().toString().padStart(2, '0');
             _month = day.getMonth();
-            _month = _month + 1;
+            _month++;
             _month = _month.toString().padStart(2, '0');
             id = `d-${day.getFullYear()}-${_month}-${_day}`;
 
@@ -513,8 +511,7 @@ function calendarInit() {
               _day == endOffDate.getDate() &&
               isLastDay
             ) {
-              cell.classList.add('day-first');
-              cell.classList.add('day-last');
+              cell.classList.add('day-first', 'day-last');
             } else if (_day == startOffDate.getDate() && isFirstDay) {
               cell.classList.add('day-first');
             } else if (_day == endOffDate.getDate() && isLastDay) {
