@@ -284,7 +284,7 @@ function calendarInit() {
 
       showDaysInMonth(month, shownYear);
 
-      calendarCode += `</tbody></tr></table>`;
+      calendarCode += `</tbody></table>`;
       if (i < monthsQuantity - 1) date.setMonth(date.getMonth() + 1);
     }
 
