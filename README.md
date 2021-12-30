@@ -9,3 +9,5 @@ Features:
 - Show calendar depends on started date from data
 - Tooltips with persons name and selected period
 - Show if few persons have days off on same days  
+
+https://nickmonster.github.io/MegaHR/
