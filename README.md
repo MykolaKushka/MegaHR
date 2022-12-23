@@ -10,4 +10,4 @@ Features:
 - Tooltips with persons name and selected period
 - Show if few persons have days off on same days  
 
-https://nickmonster.github.io/MegaHR/
+https://mykolakushka.github.io/MegaHR/
